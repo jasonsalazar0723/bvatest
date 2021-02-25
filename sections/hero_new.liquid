@@ -1,0 +1,370 @@
+<div class="hero_new">
+  <div class="content">
+      <h2 class="title">
+          {{ section.settings.title }}
+      </h2>
+      <p class="sub_title">
+        {{ section.settings.subtitle }}
+      </p>
+      <a class="cta_button" href="{{ section.settings.ctaurl }}">
+        {{ section.settings.ctatext }}
+      </a>
+  </div>
+</div>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
+  * {
+      padding: 0;
+      margin: 0;
+  }
+  .hero_new {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-size: cover;
+      background-image: url("{{ section.settings.image | img_url: 'master' }}");
+  }
+
+  @media screen and (max-width: 768px){
+    .hero_new {
+      background-image: url("{{ section.settings.image_mobile | img_url: 'master' }}");
+    }
+  }
+
+
+  .hero_new .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+  }
+
+  {% if section.settings.hero_layout == 'Left' %}
+      .hero_new .content {
+          align-items: flex-start;
+          padding: 90px;
+          width: 810px;
+      }
+
+      .hero_new {
+          justify-content: flex-start;
+      }
+
+      .hero_new .content .sub_title, .hero_new .content .title {
+          width: 100% !important;
+          text-align: left !important;
+      }
+  {% endif %}
+
+  
+  {% if section.settings.hero_layout == 'Right' %}
+    .hero_new .content {
+        align-items: flex-start;
+        margin-left: auto;
+        width: 610px;
+    }
+
+    .hero_new .content .sub_title, .hero_new .content .title {
+        width: 100% !important;
+        text-align: left !important;
+    }
+  {% endif %}
+
+  {% if section.settings.hero_layout == 'Center' %}
+    .hero_new .content .sub_title, .hero_new .content .title {
+      text-align: center !important;
+    }
+  {% endif %}
+
+
+
+  .hero_new .content .title {
+      color: {{ section.settings.textColor }};
+      font-family:  Roboto;
+      font-weight: 700;
+      font-size: 46px;
+      text-align: center;
+      text-transform: unset;
+  }
+
+  .hero_new .content .sub_title {
+      color: {{ section.settings.textColor }};
+      font-family:  Roboto;
+      font-weight: 300;
+      font-size: 24px;
+      text-align: justify;
+      width: 61.5%;
+      line-height: 40px;
+  }
+
+  .hero_new .content .cta_button{
+      color: {{ section.settings.buttontextColor }};
+      background-color: {{ section.settings.buttonbgColor }};
+      font-family:  Roboto Light 300;
+      font-size: 20px;
+      transition: all .5s;
+      width: 180px;
+      height: 50px;
+      border-radius: 30px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      margin-top: 20px;
+  }
+
+  .hero_new .content .cta_button:link {
+      text-decoration: none;
+  }
+
+  .hero_new .content .cta_button:hover {
+      color: {{ section.settings.buttonbgColor }};
+      background-color: {{ section.settings.buttontextColor }};
+  }
+
+  @media screen and (max-width: 768px){
+      .hero_new .content .title { 
+          font-size: 36px;
+          text-align: center !important;
+      }
+
+      .hero_new .content .sub_title { 
+          font-size: 18px;
+          text-align: center !important;
+          line-height: 30px;
+      }
+
+      .hero_new .content {
+          align-items: center;
+          margin-left: auto;
+          width: 100%;
+          padding: 0;
+      }
+
+      .hero_new .content .sub_title, .hero_new .content .title {
+          width: 90% !important;
+          
+      }
+
+  }
+</style>
+
+{% schema %}
+{
+  "name": {
+    "cs": "Obrázek s textovým překryvem",
+    "da": "Billede med tekstoverlejring",
+    "de": "Foto mit überlegtem Text",
+    "en": "Image with text overlay",
+    "es": "Imagen con texto superpuesto",
+    "fi": "Kuva päällä olevalla tekstillä",
+    "fr": "Image avec calque texte",
+    "it": "Immagine con testo",
+    "ja": "テキストオーバーレイ付き画像",
+    "ko": "텍스트 오버레이 포함 이미지",
+    "nb": "Bilde med tekstoverlegg",
+    "nl": "Foto met tekstoverlay",
+    "pl": "Obraz z nakładką tekstową",
+    "pt-BR": "Imagem com texto",
+    "pt-PT": "Imagem com sobreposição de texto",
+    "sv": "Bild med textöverlagring",
+    "th": "การวางซ้อนรูปภาพพร้อมข้อความ",
+    "tr": "Metin katmanı içeren görsel",
+    "vi": "Hình ảnh có lớp phủ văn bản",
+    "zh-CN": "带文本叠加的图片",
+    "zh-TW": "附文字疊加層的圖片"
+  },
+  "class": "index-section index-section--flush",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": {
+        "cs": "Obrázek",
+        "da": "Billede",
+        "de": "Foto",
+        "en": "Image",
+        "es": "Imagen",
+        "fi": "Kuva",
+        "fr": "Image",
+        "it": "Immagine",
+        "ja": "画像",
+        "ko": "이미지",
+        "nb": "Bilde",
+        "nl": "Afbeelding",
+        "pl": "Obraz",
+        "pt-BR": "Imagem",
+        "pt-PT": "Imagem",
+        "sv": "Bild",
+        "th": "รูปภาพ",
+        "tr": "Görsel",
+        "vi": "Hình ảnh",
+        "zh-CN": "图片",
+        "zh-TW": "圖片"
+      }
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": {
+        "cs": "Obrázek Mobile",
+        "da": "Billede Mobile",
+        "de": "Foto Mobile",
+        "en": "Image Mobile",
+        "es": "Imagen Mobile",
+        "fi": "Kuva Mobile",
+        "fr": "Image Mobile",
+        "it": "Immagine Mobile",
+        "ja": "画像 Mobile",
+        "ko": "이미지 Mobile",
+        "nb": "Bilde Mobile",
+        "nl": "Afbeelding Mobile",
+        "pl": "Obraz Mobile",
+        "pt-BR": "Imagem Mobile",
+        "pt-PT": "Imagem Mobile",
+        "sv": "Bild Mobile",
+        "th": "รูปภาพ Mobile",
+        "tr": "Görsel Mobile",
+        "vi": "Hình ảnh Mobile",
+        "zh-CN": "图片 Mobile",
+        "zh-TW": "圖片 Mobile"
+      }
+    },
+    {
+      "type": "select",
+      "id": "hero_layout",
+      "label": {
+        "cs": "Rozvržení",
+        "da": "Layout",
+        "de": "Layout",
+        "en": "Layout",
+        "es": "Diseño",
+        "fi": "Asettelu",
+        "fr": "Mise en page",
+        "it": "Layout",
+        "ja": "レイアウト",
+        "ko": "레이아웃",
+        "nb": "Oppsett",
+        "nl": "Opmaak",
+        "pl": "Układ",
+        "pt-BR": "Layout",
+        "pt-PT": "Esquema",
+        "sv": "Layout",
+        "th": "เลย์เอาต์",
+        "tr": "Düzen",
+        "vi": "Bố cục",
+        "zh-CN": "布局",
+        "zh-TW": "版面配置"
+      },
+      "default": "Center",
+      "options": [
+        {
+          "label":"Left",
+          "value": "Left"
+        },
+        {
+          "label":"Center",
+          "value": "Center"
+        },
+        {
+          "label":"Right",
+          "value": "Right"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id" : "title",
+      "label" : "Title",
+      "default" : "Hero Title"
+    },
+    {
+      "type": "text",
+      "id" : "subtitle",
+      "label" : "Copy",
+      "default" : "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum in possimus doloremque ipsum consequuntur quisquam similique tempora maxime vel? Repellendus."
+    },
+    {
+      "type": "text",
+      "id" : "ctatext",
+      "label" : "Cta Text",
+      "default" : "Read More"
+    },
+    {
+      "type": "url",
+      "id" : "ctaurl",
+      "label" : "Cta Url"
+    },
+    {
+      "type": "color",
+      "id" : "textColor",
+      "label" : "Text Color",
+      "default" : "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id" : "buttontextColor",
+      "label" : "Button Text Color",
+      "default" : "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id" : "buttonbgColor",
+      "label" : "Button background Color",
+      "default" : "#57AD68"
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "cs": "Obrázek s textovým překryvem New",
+        "da": "Billede med tekstoverlejring New",
+        "de": "Foto mit überlegtem Text New",
+        "en": "Image with text overlay New",
+        "es": "Imagen con texto superpuesto New",
+        "fi": "Kuva päällä olevalla tekstillä New",
+        "fr": "Image avec calque texte New",
+        "it": "Immagine con testo New",
+        "ja": "テキストオーバーレイ付き画像 New",
+        "ko": "텍스트 오버레이 포함 이미지 New",
+        "nb": "Bilde med tekstoverlegg New",
+        "nl": "Foto met tekstoverlay New",
+        "pl": "Obraz z nakładką tekstową New",
+        "pt-BR": "Imagem com sobreposição de texto New",
+        "pt-PT": "Imagem com sobreposição de texto New",
+        "sv": "Bild med textöverlagring New",
+        "th": "การวางซ้อนรูปภาพพร้อมข้อความ New",
+        "tr": "Metin katmanı içeren görsel New",
+        "vi": "Hình ảnh có lớp phủ văn bản New",
+        "zh-CN": "带文本叠加的图片 New",
+        "zh-TW": "附文字疊加層的圖片"
+      },
+      "category": {
+        "cs": "Obrázek",
+        "da": "Billede",
+        "de": "Foto",
+        "en": "Image",
+        "es": "Imagen",
+        "fi": "Kuva",
+        "fr": "Image",
+        "it": "Immagine",
+        "ja": "画像",
+        "ko": "이미지",
+        "nb": "Bilde",
+        "nl": "Afbeelding",
+        "pl": "Obraz",
+        "pt-BR": "Imagem",
+        "pt-PT": "Imagem",
+        "sv": "Bild",
+        "th": "รูปภาพ",
+        "tr": "Görsel",
+        "vi": "Hình ảnh",
+        "zh-CN": "图片",
+        "zh-TW": "圖片"
+      }
+    }
+  ]
+}
+{% endschema %}
